@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  streamlit_app:
+    build: .
+    ports:
+      - "8501:80"
