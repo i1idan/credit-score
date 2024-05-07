@@ -40,7 +40,6 @@ missed_payment_default = 0
 minimum_payment_default = 0
 
 st.title('Credit Score Analysis')
-# st.caption('Made by Jaqueline Medeiros')
 
 st.markdown('''
 ''')
@@ -212,3 +211,35 @@ with col1:
             plt.xlim(0,20)
             sns.despine(right=True, top=True)
             st.pyplot(importance_figure)
+
+# Ethics Checker Section
+st.header('Ethics Checker')
+
+biased_fields = []
+
+# Check for potential biases
+if age < 25 or age > 65:
+    biased_fields.append("Age")
+if annual_income < 20000:
+    biased_fields.append("Annual Income")
+if accounts < 0:
+    biased_fields.append("Number of Bank Accounts")
+if credit_cards < 0:
+    biased_fields.append("Number of Credit Cards")
+if delayed_payments < 0:
+    biased_fields.append("Number of Delayed Payments")
+if credit_card_ratio < 0 or credit_card_ratio > 100:
+    biased_fields.append("Credit Card Utilization Ratio")
+if emi_monthly < 0:
+    biased_fields.append("Monthly EMI")
+if credit_history < 0:
+    biased_fields.append("Credit History")
+# Add more bias checks as needed...
+
+# Display potential biases
+if biased_fields:
+    st.warning("Potential biases detected in the following fields:")
+    for field in biased_fields:
+        st.write("- " + field)
+else:
+    st.success("No potential biases detected.")
